@@ -1,21 +1,24 @@
 part of './response.dart';
 
 extension RespWriter on Response {
+  @internal
   Future<void> write(HttpRequest httpRequest) async {
     // ignore: invalid_use_of_protected_member
     var httpResponse = httpRequest.response;
     if (writer == null) {
-      httpResponse.statusCode = 200;
+      httpResponse.statusCode = status;
       httpResponse.close();
       return;
     }
 
     prepareWriter(httpResponse);
+    httpResponse.statusCode = status;
     await writer!.writeResp();
     httpResponse.close();
     if (_bgTask != null) _bgTask!();
   }
 
+  @internal
   void prepareWriter(HttpResponse httpResponse) {
     writer!.redirect = httpResponse.redirect;
     writer!.add = httpResponse.add;
@@ -136,10 +139,12 @@ class FileStreamResponse extends ResponseWriter {
 /// [ResponseWriter] type to send streamed data response
 class StreamResponse extends ResponseWriter {
   final Stream<List<int>> stream;
-  StreamResponse(this.stream);
+  final ContentType? contentType;
+  StreamResponse(this.stream, [this.contentType]);
 
   @override
   Future<void> writeResp() async {
+    headers.contentType = contentType ?? ContentType.binary;
     await addStream(stream);
   }
 }

@@ -1,9 +1,8 @@
 import 'dart:io';
+import 'package:cruky/src/common/mimetypes.dart';
+import 'package:cruky/src/constants.dart';
 import 'package:meta/meta.dart';
 import 'dart:convert';
-
-import 'package:cruky/common/mimetypes.dart';
-import 'package:cruky/constants.dart';
 
 part './resp_writer.dart';
 
@@ -15,6 +14,7 @@ class Response {
   @protected
   ResponseWriter? writer;
   int status = 200;
+  int get nativeStatus => _httpResponse.statusCode;
 
   /// function that will be run in the background when the response is closed
   Function()? _bgTask;

@@ -1,10 +1,9 @@
-import 'dart:io';
-
+import 'package:cruky/print_logs.dart';
 import 'package:meta/meta.dart';
 
-import 'context/request.dart';
-import 'context/response.dart';
-import 'err/http_exception.dart';
+import '../context/request.dart';
+import '../context/response.dart';
+import '../err/http_exception.dart';
 
 /// prefiusly called [NextHandler]
 typedef Handler = Function(Request req, Response resp);
@@ -37,6 +36,11 @@ class Pipeline {
       : reqHandlers = h ?? [],
         errHandlers = eh ?? [];
 
+  /// init new [Pipeline] with logs printer middleware
+  Pipeline.log()
+      : reqHandlers = [printLogs],
+        errHandlers = [printErrLogs];
+
   final List<Middleware> reqHandlers;
   final List<ErrMiddleware> errHandlers;
 
@@ -45,42 +49,14 @@ class Pipeline {
       reqHandlers.add(f);
       return;
     }
-    f as ErrMiddleware;
-    errHandlers.add(f);
+    if (f is ErrMiddleware) {
+      errHandlers.add(f);
+      return;
+    }
+    throw "This method is not type of `Middleware` or `ErrMiddleware`";
   }
 
-  @protected
-  handle(HttpRequest httpRequest) async {
-    late final Request request;
-    late final Response response;
-    try {
-      request = Request(httpRequest);
-      response = Response(httpRequest.response);
-    } catch (e, stackTrace) {
-      if (e is HTTPException) {
-        e.stackTrace = stackTrace;
-        await errNext(request, response, e);
-        return;
-      }
-      print(e);
-      print(stackTrace);
-    }
-
-    try {
-      await next(request, response);
-    } catch (e, stackTrace) {
-      if (e is HTTPException) {
-        e.stackTrace = stackTrace;
-        await errNext(request, response, e);
-        return;
-      }
-      print(e);
-      print(stackTrace);
-    }
-
-    response.write(httpRequest);
-  }
-
+  @internal
   @protected
   Future next(Request req, Response resp) async {
     int index = (req.read(#reqMiddlewareI) ?? 0) as int;
@@ -89,6 +65,7 @@ class Pipeline {
     return result;
   }
 
+  @internal
   @protected
   Future errNext(Request req, Response resp, HTTPException e) async {
     int index = (req.read(#errMiddlewareI) ?? 0) as int;

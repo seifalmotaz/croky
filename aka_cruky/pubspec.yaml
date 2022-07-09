@@ -1,15 +1,13 @@
-name: cruky
+name: aka_cruky
 description: A sample command-line application.
-version: 0.1.0
+version: 1.0.0
 # homepage: https://www.example.com
 
 environment:
-  sdk: '>=2.17.1 <3.0.0'
+  sdk: '>=2.17.3 <3.0.0'
 
-dependencies:
-  path: ^1.8.1
-  meta: ^1.8.0
-  mime: ^1.0.2
+# dependencies:
+#   path: ^1.8.0
 
 dev_dependencies:
   lints: ^2.0.0

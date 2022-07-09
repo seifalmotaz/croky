@@ -1,14 +1,14 @@
 import 'dart:io';
 
-import 'package:cruky/context/request.dart';
-import 'package:cruky/context/response.dart';
-import 'package:cruky/err/http_exception.dart';
-import 'package:cruky/pipeline.dart';
+import 'package:cruky/src/context/request.dart';
+import 'package:cruky/src/context/response.dart';
+import 'package:cruky/src/err/http_exception.dart';
+import 'package:cruky/src/core/pipeline.dart';
 
 import 'pattern.dart';
 
 class Path {
-  final PathPattern pattern;
+  PathPattern pattern;
   final Map<String, PathMethod> methods = {};
   Path(String path) : pattern = PathPattern.parse(path);
 
@@ -40,9 +40,6 @@ class PathMethod extends Pipeline {
     required this.handler,
     required this.acceptedContentType,
   });
-
-  @override
-  handle(HttpRequest httpRequest) async {}
 
   @override
   Future next(Request req, Response resp) async {

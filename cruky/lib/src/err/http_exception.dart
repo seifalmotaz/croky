@@ -2,7 +2,7 @@
 class HTTPException {
   final int status;
   final String title;
-  final dynamic detail;
+  final dynamic details;
   StackTrace? stackTrace;
-  HTTPException(this.status, this.title, [this.detail, this.stackTrace]);
+  HTTPException(this.status, this.title, [this.details, this.stackTrace]);
 }

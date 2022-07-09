@@ -2,12 +2,13 @@
 __pronunciation: croky__
 
 ## Features
-[x] Simple code to start serving you api
-[x] Fast performance
-[x] Get into the point without any struggling
-[x] Static files handler
-[x] Web socket support
-[ ] HTTPS support
+
+- [x] Simple code to start serving you api
+- [x] Fast performance
+- [x] Get into the point without any struggling
+- [x] Static files handler
+- [x] Web socket support
+- [ ] HTTPS support
 
 # Example
 
