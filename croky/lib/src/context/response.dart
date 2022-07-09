@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:cruky/src/common/mimetypes.dart';
-import 'package:cruky/src/constants.dart';
+import 'package:croky/src/common/mimetypes.dart';
+import 'package:croky/src/constants.dart';
 import 'package:meta/meta.dart';
 import 'dart:convert';
 

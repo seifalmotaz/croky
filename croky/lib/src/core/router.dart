@@ -1,9 +1,9 @@
-import 'package:cruky/src/common/mimetypes.dart';
-import 'package:cruky/src/context/request.dart';
-import 'package:cruky/src/context/response.dart';
-import 'package:cruky/src/path/handler.dart';
-import 'package:cruky/src/path/pattern.dart';
-import 'package:cruky/src/core/pipeline.dart';
+import 'package:croky/src/common/mimetypes.dart';
+import 'package:croky/src/context/request.dart';
+import 'package:croky/src/context/response.dart';
+import 'package:croky/src/path/handler.dart';
+import 'package:croky/src/path/pattern.dart';
+import 'package:croky/src/core/pipeline.dart';
 import 'package:path/path.dart' as pp; // for path package
 
 class Router {

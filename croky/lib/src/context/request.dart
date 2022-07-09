@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:cruky/src/common/mimetypes.dart';
-import 'package:cruky/src/common/string_converter.dart';
-import 'package:cruky/src/err/http_exception.dart';
+import 'package:croky/src/common/mimetypes.dart';
+import 'package:croky/src/common/string_converter.dart';
+import 'package:croky/src/err/http_exception.dart';
 import 'package:mime/mime.dart';
 
 part './form_data.dart';

@@ -1,4 +1,4 @@
-import 'package:cruky/print_logs.dart';
+import 'package:croky/print_logs.dart';
 import 'package:meta/meta.dart';
 
 import '../context/request.dart';

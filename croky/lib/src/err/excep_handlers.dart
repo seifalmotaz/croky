@@ -1,5 +1,5 @@
-import 'package:cruky/src/context/request.dart';
-import 'package:cruky/src/context/response.dart';
+import 'package:croky/src/context/request.dart';
+import 'package:croky/src/context/response.dart';
 
 import 'http_exception.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:cruky/cruky.dart';
+import 'package:croky/croky.dart';
 
 void main() {
   Router router = Router();
